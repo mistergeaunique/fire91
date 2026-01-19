@@ -18,7 +18,6 @@
       --radius:18px;
       --max:1100px;
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -28,14 +27,10 @@
         radial-gradient(900px 500px at 90% 20%, rgba(255,61,141,.16), transparent 55%),
         var(--bg);
       color:var(--text);
+      line-height:1.45;
     }
-
     .wrap{max-width:var(--max); margin:auto; padding:28px 18px 60px}
-    header{
-      display:flex; justify-content:space-between; align-items:center;
-      margin-bottom:24px;
-    }
-
+    header{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;}
     .brand{display:flex; gap:12px; align-items:center}
     .logo{
       width:44px; height:44px; border-radius:14px;
@@ -44,7 +39,6 @@
     }
     .brand h1{margin:0; font-size:18px}
     .brand p{margin:0; font-size:12px; color:var(--muted)}
-
     nav a{
       margin-left:10px;
       padding:8px 12px;
@@ -55,7 +49,6 @@
       background:rgba(255,255,255,.05);
     }
     nav a:hover{color:var(--text)}
-
     .card{
       background:rgba(18,26,42,.9);
       border:1px solid rgba(255,255,255,.08);
@@ -63,20 +56,13 @@
       box-shadow:var(--shadow);
     }
     .pad{padding:18px}
-
-    .hero{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-    }
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:18px;}
     @media(max-width:900px){.hero{grid-template-columns:1fr}}
-
     h2{margin:0 0 10px; font-size:30px}
-    .lead{color:var(--muted); font-size:14px}
-
+    .lead{color:var(--muted); font-size:14px; margin:0}
     .player{display:flex; flex-direction:column; gap:14px}
     audio{width:100%}
-
+    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
     button{
       padding:11px 14px;
       border-radius:14px;
@@ -90,37 +76,21 @@
       background:linear-gradient(135deg,var(--accent),var(--accent2));
       border:0;
     }
-
-    .controls{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-
     .status{
       flex:1;
-      min-width:240px;
+      min-width:260px;
       font-size:12px;
       color:var(--muted);
       padding:10px 12px;
       border-radius:14px;
       background:rgba(0,0,0,.2);
       border:1px solid rgba(255,255,255,.08);
-      word-break:break-all;
+      word-break:break-word;
     }
-
-    .row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      margin-top:18px;
-    }
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
     @media(max-width:900px){.row{grid-template-columns:1fr}}
-
     h3{margin:0 0 10px; font-size:16px}
-    .muted{color:var(--muted); font-size:13px}
-
+    .muted{color:var(--muted); font-size:13px; margin:0 0 10px}
     .list{display:grid; gap:10px}
     .item{
       padding:12px;
@@ -130,8 +100,8 @@
       font-size:13px;
       display:flex;
       justify-content:space-between;
+      gap:10px;
     }
-
     form{display:grid; gap:10px}
     input,textarea{
       padding:11px 12px;
@@ -139,9 +109,9 @@
       border:1px solid rgba(255,255,255,.1);
       background:rgba(0,0,0,.25);
       color:var(--text);
+      outline:none;
     }
     textarea{min-height:110px}
-
     .foot{
       margin-top:26px;
       font-size:12px;
@@ -159,7 +129,7 @@
 
 <header>
   <div class="brand">
-    <div class="logo"></div>
+    <div class="logo" aria-hidden="true"></div>
     <div>
       <h1>FIRE91 Global Cross Over Radio</h1>
       <p>Internet Radio • Live DJs • Global Vibes</p>
@@ -177,8 +147,7 @@
     <div class="pad">
       <h2>Global crossover energy, 24/7</h2>
       <p class="lead">
-        FIRE91 connects DJs and listeners worldwide.  
-        Live shows, guest mixes, and open-format crossover sound.
+        FIRE91 connects DJs and listeners worldwide. Live shows, guest mixes, and open-format crossover sound.
       </p>
     </div>
   </div>
@@ -188,16 +157,20 @@
       <strong>Listen Live</strong>
 
       <audio id="audio" preload="none" controls>
-        <source src="https://usa20.fastcast4u.com:2000/" type="audio/mpeg">
+        <source id="srcMp3" src="" type="audio/mpeg">
+        <source id="srcAac" src="" type="audio/aac">
+        Your browser does not support the audio element.
       </audio>
 
       <div class="controls">
-        <button class="primary" id="playBtn">Play</button>
-        <button id="stopBtn">Stop</button>
-        <button id="openBtn">Open Stream</button>
-        <div class="status" id="status">
-          Stream: https://usa20.fastcast4u.com:2000/
-        </div>
+        <button class="primary" id="playBtn" type="button">Play</button>
+        <button id="stopBtn" type="button">Stop</button>
+        <button id="openBtn" type="button">Open Stream</button>
+        <div class="status" id="status">Ready.</div>
+      </div>
+
+      <div class="muted" style="margin:0;">
+        If Play fails on mobile, tap Play again or use Open Stream.
       </div>
     </div>
   </div>
@@ -221,10 +194,10 @@
       <h3>DJ Streams Wanted</h3>
       <p class="muted">Submissions open worldwide.</p>
       <form id="djForm">
-        <input placeholder="DJ / Host Name" required>
-        <input type="email" placeholder="Email" required>
-        <input placeholder="Time Zone">
-        <textarea placeholder="Tell us about your style and availability"></textarea>
+        <input id="djName" placeholder="DJ / Host Name" required>
+        <input id="djEmail" type="email" placeholder="Email" required>
+        <input id="djTZ" placeholder="Time Zone (EST, CST, GMT, etc.)">
+        <textarea id="djMsg" placeholder="Tell us about your style and availability"></textarea>
         <button class="primary" type="submit">Send Submission</button>
       </form>
     </div>
@@ -239,30 +212,73 @@
 </div>
 
 <script>
+  // Base stream endpoint (Shoutcast-style). We auto-generate nocache each time Play is pressed.
+  const STREAM_BASE = "https://usa20.fastcast4u.com:2000/;";
+
   const audio = document.getElementById("audio");
+  const srcMp3 = document.getElementById("srcMp3");
+  const srcAac = document.getElementById("srcAac");
   const status = document.getElementById("status");
 
-  document.getElementById("playBtn").onclick = async () => {
-    try{
-      await audio.play();
-      status.textContent = "Playing live stream…";
-    }catch{
-      status.textContent = "Playback blocked. Use Open Stream.";
-    }
-  };
+  function buildStreamUrl(){
+    // Rebuild each time to avoid stale caches and to match your known working pattern
+    return STREAM_BASE + "?type=http&nocache=" + Date.now();
+  }
 
-  document.getElementById("stopBtn").onclick = () => {
+  function setStatus(msg){ status.textContent = msg; }
+
+  function loadStream(url){
+    srcMp3.src = url;
+    srcAac.src = url;
+    audio.load();
+  }
+
+  document.getElementById("playBtn").addEventListener("click", async () => {
+    const url = buildStreamUrl();
+    loadStream(url);
+
+    try {
+      setStatus("Connecting…");
+      await audio.play();
+      setStatus("Playing live stream.");
+    } catch (e) {
+      setStatus("Playback blocked or stream not HTML5 compatible. Use Open Stream.");
+    }
+  });
+
+  document.getElementById("stopBtn").addEventListener("click", () => {
     audio.pause();
     audio.currentTime = 0;
-    status.textContent = "Stopped.";
-  };
+    setStatus("Stopped.");
+  });
 
-  document.getElementById("openBtn").onclick = () => {
-    window.open("https://usa20.fastcast4u.com:2000/","_blank");
-  };
+  document.getElementById("openBtn").addEventListener("click", () => {
+    window.open(buildStreamUrl(), "_blank", "noopener,noreferrer");
+  });
 
   document.getElementById("year").textContent = new Date().getFullYear();
-</script>
 
+  // DJ submission via mailto (no backend)
+  document.getElementById("djForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("djName").value.trim();
+    const email = document.getElementById("djEmail").value.trim();
+    const tz = document.getElementById("djTZ").value.trim();
+    const msg = document.getElementById("djMsg").value.trim();
+
+    const subject = encodeURIComponent("FIRE91 DJ Submission — " + name);
+    const body = encodeURIComponent(
+      "DJ/Host Name: " + name + "\n" +
+      "Email: " + email + "\n" +
+      "Time Zone: " + tz + "\n\n" +
+      "Message:\n" + msg + "\n"
+    );
+
+    // Replace this with your real station email
+    const to = "yourstation@email.com";
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  });
+</script>
 </body>
 </html>
