@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FIRE91 Global Cross Over Radio</title>
+  <title>FIRE91.8 Global Cross Over Radio</title>
+  <meta name="description" content="FIRE91.8 Global Cross Over Radio – Live DJs, global crossover sound.">
+
+  <!-- Favicon (matches your current filename) -->
   <link rel="icon" type="image/png" href="fire91-8-logo.png.png">
-  <meta name="description" content="FIRE91 Global Cross Over Radio – Live DJs, global crossover sound.">
 
   <style>
     :root{
@@ -19,6 +21,7 @@
       --radius:18px;
       --max:1100px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -30,18 +33,24 @@
       color:var(--text);
       line-height:1.45;
     }
+
     .wrap{max-width:var(--max); margin:auto; padding:28px 18px 60px}
-    header{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;}
-    .brand{display:flex; gap:12px; align-items:center}
-    .logo{
-      width:44px; height:44px; border-radius:14px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      box-shadow:var(--shadow);
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+      gap:14px;
+      flex-wrap:wrap;
     }
+
+    .brand{display:flex; gap:12px; align-items:center}
     .brand h1{margin:0; font-size:18px}
     .brand p{margin:0; font-size:12px; color:var(--muted)}
+
+    nav{display:flex; gap:10px; flex-wrap:wrap}
     nav a{
-      margin-left:10px;
       padding:8px 12px;
       border-radius:12px;
       text-decoration:none;
@@ -50,6 +59,7 @@
       background:rgba(255,255,255,.05);
     }
     nav a:hover{color:var(--text)}
+
     .card{
       background:rgba(18,26,42,.9);
       border:1px solid rgba(255,255,255,.08);
@@ -57,12 +67,16 @@
       box-shadow:var(--shadow);
     }
     .pad{padding:18px}
+
     .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:18px;}
     @media(max-width:900px){.hero{grid-template-columns:1fr}}
+
     h2{margin:0 0 10px; font-size:30px}
     .lead{color:var(--muted); font-size:14px; margin:0}
+
     .player{display:flex; flex-direction:column; gap:14px}
     audio{width:100%}
+
     .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
     button{
       padding:11px 14px;
@@ -77,9 +91,9 @@
       background:linear-gradient(135deg,var(--accent),var(--accent2));
       border:0;
     }
+
     .status{
-      flex:1;
-      min-width:260px;
+      width:100%;
       font-size:12px;
       color:var(--muted);
       padding:10px 12px;
@@ -88,10 +102,13 @@
       border:1px solid rgba(255,255,255,.08);
       word-break:break-word;
     }
+
     .row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
     @media(max-width:900px){.row{grid-template-columns:1fr}}
+
     h3{margin:0 0 10px; font-size:16px}
     .muted{color:var(--muted); font-size:13px; margin:0 0 10px}
+
     .list{display:grid; gap:10px}
     .item{
       padding:12px;
@@ -103,6 +120,7 @@
       justify-content:space-between;
       gap:10px;
     }
+
     form{display:grid; gap:10px}
     input,textarea{
       padding:11px 12px;
@@ -113,6 +131,7 @@
       outline:none;
     }
     textarea{min-height:110px}
+
     .foot{
       margin-top:26px;
       font-size:12px;
@@ -122,28 +141,26 @@
       flex-wrap:wrap;
       gap:10px;
     }
-    /* FIRE91.8 logo glow animation */
-@keyframes fireGlow {
-  0% {
-    box-shadow:
-      0 0 0 rgba(255, 61, 141, 0),
-      0 0 0 rgba(75, 212, 255, 0);
-  }
-  50% {
-    box-shadow:
-      0 0 18px rgba(255, 61, 141, 0.45),
-      0 0 28px rgba(75, 212, 255, 0.35);
-  }
-  100% {
-    box-shadow:
-      0 0 0 rgba(255, 61, 141, 0),
-      0 0 0 rgba(75, 212, 255, 0);
-  }
-}
 
-.fire-logo {
-  animation: fireGlow 4s ease-in-out infinite;
-}
+    /* FIRE91.8 logo glow animation */
+    @keyframes fireGlow {
+      0% {
+        box-shadow:
+          0 0 0 rgba(255, 61, 141, 0),
+          0 0 0 rgba(75, 212, 255, 0);
+      }
+      50% {
+        box-shadow:
+          0 0 18px rgba(255, 61, 141, 0.45),
+          0 0 28px rgba(75, 212, 255, 0.35);
+      }
+      100% {
+        box-shadow:
+          0 0 0 rgba(255, 61, 141, 0),
+          0 0 0 rgba(75, 212, 255, 0);
+      }
+    }
+    .fire-logo { animation: fireGlow 4s ease-in-out infinite; }
   </style>
 </head>
 
@@ -155,6 +172,7 @@
         <img
           src="fire91-8-logo.png.png"
           alt="FIRE91.8 Global Cross Over Radio"
+          class="fire-logo"
           style="
             height:64px;
             width:auto;
@@ -175,144 +193,201 @@
       </nav>
     </header>
 
-
-<section class="hero">
-  <div class="card">
-    <div class="pad">
-      <h2>Global crossover energy, 24/7</h2>
-      <p class="lead">
-        FIRE91 connects DJs and listeners worldwide. Live shows, guest mixes, and open-format crossover sound.
-      </p>
-    </div>
-  </div>
-
-  <div id="listen" class="card">
-    <div class="pad player">
-      <strong>Listen Live</strong>
-
-      <audio id="audio" preload="none" controls>
-        <source id="srcMp3" src="" type="audio/mpeg">
-        <source id="srcAac" src="" type="audio/aac">
-        Your browser does not support the audio element.
-      </audio>
-
-      <div class="controls">
-        <button class="primary" id="playBtn" type="button">Play</button>
-        <button id="stopBtn" type="button">Stop</button>
-        <button id="openBtn" type="button">Open Stream</button>
-        <div class="status" id="status">Ready.</div>
+    <section class="hero">
+      <div class="card">
+        <div class="pad">
+          <h2>Global crossover energy, 24/7</h2>
+          <p class="lead">
+            FIRE91.8 connects DJs and listeners worldwide. Live shows, guest mixes, and open-format crossover sound.
+          </p>
+        </div>
       </div>
 
-      <div class="muted" style="margin:0;">
-        If Play fails on mobile, tap Play again or use Open Stream.
+      <div id="listen" class="card">
+        <div class="pad player">
+          <strong>Listen Live</strong>
+
+          <audio id="audio" preload="none" controls>
+            <source id="srcMp3" src="" type="audio/mpeg">
+            <source id="srcAac" src="" type="audio/aac">
+            Your browser does not support the audio element.
+          </audio>
+
+          <div class="controls">
+            <button class="primary" id="playBtn" type="button">Play</button>
+            <button id="stopBtn" type="button">Stop</button>
+            <button id="openBtn" type="button">Open Stream</button>
+          </div>
+
+          <div class="status" id="status">Ready.</div>
+
+          <!-- NOW PLAYING / LISTENERS -->
+          <div class="status" id="nowPlaying">Now Playing: Loading…</div>
+          <div class="status" id="listenerCount">Listeners: Loading…</div>
+
+          <div class="muted" style="margin:0;">
+            If Play fails on mobile, tap Play again or use Open Stream.
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="row">
-  <div id="schedule" class="card">
-    <div class="pad">
-      <h3>Schedule (Sample)</h3>
-      <div class="list">
-        <div class="item"><b>Mon–Thu</b><span>Drive Time Mix</span></div>
-        <div class="item"><b>Friday</b><span>Club Night Live</span></div>
-        <div class="item"><b>Saturday</b><span>Guest DJs</span></div>
-        <div class="item"><b>Sunday</b><span>Chill & Slow Jams</span></div>
+    <section class="row">
+      <div id="schedule" class="card">
+        <div class="pad">
+          <h3>Schedule (Sample)</h3>
+          <div class="list">
+            <div class="item"><b>Mon–Thu</b><span>Drive Time Mix</span></div>
+            <div class="item"><b>Friday</b><span>Club Night Live</span></div>
+            <div class="item"><b>Saturday</b><span>Guest DJs</span></div>
+            <div class="item"><b>Sunday</b><span>Chill & Slow Jams</span></div>
+          </div>
+        </div>
       </div>
+
+      <div id="djs" class="card">
+        <div class="pad">
+          <h3>DJ Streams Wanted</h3>
+          <p class="muted">Submissions open worldwide.</p>
+          <form id="djForm">
+            <input id="djName" placeholder="DJ / Host Name" required>
+            <input id="djEmail" type="email" placeholder="Email" required>
+            <input id="djTZ" placeholder="Time Zone (EST, CST, GMT, etc.)">
+            <textarea id="djMsg" placeholder="Tell us about your style and availability"></textarea>
+            <button class="primary" type="submit">Send Submission</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div>© <span id="year"></span> FIRE91.8 Global Cross Over Radio</div>
+      <div>Powered by FastCast4U</div>
     </div>
+
   </div>
 
-  <div id="djs" class="card">
-    <div class="pad">
-      <h3>DJ Streams Wanted</h3>
-      <p class="muted">Submissions open worldwide.</p>
-      <form id="djForm">
-        <input id="djName" placeholder="DJ / Host Name" required>
-        <input id="djEmail" type="email" placeholder="Email" required>
-        <input id="djTZ" placeholder="Time Zone (EST, CST, GMT, etc.)">
-        <textarea id="djMsg" placeholder="Tell us about your style and availability"></textarea>
-        <button class="primary" type="submit">Send Submission</button>
-      </form>
-    </div>
-  </div>
-</section>
+  <script>
+    // STREAM (your confirmed working pattern)
+    const STREAM_PREFIX = "https://usa20.fastcast4u.com:2000/;?type=http&nocache=";
 
-<div class="foot">
-  <div>© <span id="year"></span> FIRE91 Global Cross Over Radio</div>
-  <div>Powered by FastCast4U</div>
-</div>
+    const audio  = document.getElementById("audio");
+    const srcMp3 = document.getElementById("srcMp3");
+    const srcAac = document.getElementById("srcAac");
+    const status = document.getElementById("status");
 
-</div>
-
-<script>
-  // Base stream endpoint (Shoutcast-style). We auto-generate nocache each time Play is pressed.
-  const STREAM_BASE = "https://usa20.fastcast4u.com:2000/;";
-
-  const audio = document.getElementById("audio");
-  const srcMp3 = document.getElementById("srcMp3");
-  const srcAac = document.getElementById("srcAac");
-  const status = document.getElementById("status");
-
-  function buildStreamUrl(){
-    // Rebuild each time to avoid stale caches and to match your known working pattern
-    return STREAM_BASE + "?type=http&nocache=" + Date.now();
-  }
-
-  function setStatus(msg){ status.textContent = msg; }
-
-  function loadStream(url){
-    srcMp3.src = url;
-    srcAac.src = url;
-    audio.load();
-  }
-
-  document.getElementById("playBtn").addEventListener("click", async () => {
-    const url = buildStreamUrl();
-    loadStream(url);
-
-    try {
-      setStatus("Connecting…");
-      await audio.play();
-      setStatus("Playing live stream.");
-    } catch (e) {
-      setStatus("Playback blocked or stream not HTML5 compatible. Use Open Stream.");
+    function streamUrl() {
+      return STREAM_PREFIX + Date.now();
     }
-  });
 
-  document.getElementById("stopBtn").addEventListener("click", () => {
-    audio.pause();
-    audio.currentTime = 0;
-    setStatus("Stopped.");
-  });
+    function setStatus(msg) {
+      status.textContent = msg;
+    }
 
-  document.getElementById("openBtn").addEventListener("click", () => {
-    window.open(buildStreamUrl(), "_blank", "noopener,noreferrer");
-  });
+    function loadStream(url) {
+      srcMp3.src = url;
+      srcAac.src = url;
+      audio.load();
+    }
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+    async function tryPlayOnce() {
+      const url = streamUrl();
+      loadStream(url);
 
-  // DJ submission via mailto (no backend)
-  document.getElementById("djForm").addEventListener("submit", (e) => {
-    e.preventDefault();
+      try {
+        setStatus("Connecting…");
+        await audio.play();
+        setStatus("Playing live stream.");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
 
-    const name = document.getElementById("djName").value.trim();
-    const email = document.getElementById("djEmail").value.trim();
-    const tz = document.getElementById("djTZ").value.trim();
-    const msg = document.getElementById("djMsg").value.trim();
+    document.getElementById("playBtn").addEventListener("click", async () => {
+      const ok1 = await tryPlayOnce();
+      if (ok1) return;
 
-    const subject = encodeURIComponent("FIRE91 DJ Submission — " + name);
-    const body = encodeURIComponent(
-      "DJ/Host Name: " + name + "\n" +
-      "Email: " + email + "\n" +
-      "Time Zone: " + tz + "\n\n" +
-      "Message:\n" + msg + "\n"
-    );
+      setStatus("Retrying…");
+      const ok2 = await tryPlayOnce();
+      if (ok2) return;
 
-    // Replace this with your real station email
-    const to = "yourstation@email.com";
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-  });
-</script>
+      setStatus("Playback blocked or not supported in this browser. Use Open Stream.");
+    });
+
+    document.getElementById("stopBtn").addEventListener("click", () => {
+      audio.pause();
+      audio.currentTime = 0;
+      setStatus("Stopped.");
+    });
+
+    document.getElementById("openBtn").addEventListener("click", () => {
+      window.open(streamUrl(), "_blank", "noopener,noreferrer");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // DJ submission via mailto (no backend)
+    document.getElementById("djForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("djName").value.trim();
+      const email = document.getElementById("djEmail").value.trim();
+      const tz = document.getElementById("djTZ").value.trim();
+      const msg = document.getElementById("djMsg").value.trim();
+
+      const subject = encodeURIComponent("FIRE91.8 DJ Submission — " + name);
+      const body = encodeURIComponent(
+        "DJ/Host Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Time Zone: " + tz + "\n\n" +
+        "Message:\n" + msg + "\n"
+      );
+
+      // Replace this with your real station email
+      const to = "yourstation@email.com";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+
+    // NOW PLAYING + LISTENERS (JSONP)
+    // If your stats endpoint differs, tell me what FastCast4U provides and I’ll adjust.
+    const STATS_URL_BASE = "https://usa20.fastcast4u.com:2000/stats?sid=1&json=1&callback=";
+
+    const nowPlayingEl = document.getElementById("nowPlaying");
+    const listenerEl = document.getElementById("listenerCount");
+
+    window.fire91Stats = function (data) {
+      try {
+        const song = (data && (data.songtitle || data.title)) ? (data.songtitle || data.title) : "";
+        const listeners = (data && (data.currentlisteners !== undefined)) ? data.currentlisteners : "";
+
+        nowPlayingEl.textContent = "Now Playing: " + (song ? song : "Unavailable");
+        listenerEl.textContent = "Listeners: " + (listeners !== "" ? listeners : "Unavailable");
+      } catch (e) {
+        nowPlayingEl.textContent = "Now Playing: Unavailable";
+        listenerEl.textContent = "Listeners: Unavailable";
+      }
+    };
+
+    function loadStatsJSONP() {
+      const old = document.getElementById("fire91StatsJsonp");
+      if (old) old.remove();
+
+      const s = document.createElement("script");
+      s.id = "fire91StatsJsonp";
+      s.async = true;
+      s.src = STATS_URL_BASE + "fire91Stats" + "&_=" + Date.now();
+
+      s.onerror = function () {
+        nowPlayingEl.textContent = "Now Playing: Unavailable";
+        listenerEl.textContent = "Listeners: Unavailable";
+      };
+
+      document.body.appendChild(s);
+    }
+
+    loadStatsJSONP();
+    setInterval(loadStatsJSONP, 15000);
+  </script>
 </body>
 </html>
