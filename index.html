@@ -15,18 +15,17 @@
       --accent:#ff3d8d;
       --accent2:#4bd4ff;
       --ok:#23c55e;
-      --warn:#fbbf24;
+      --bad:#ef4444;
       --shadow: 0 12px 35px rgba(0,0,0,.35);
       --radius:18px;
       --max:1100px;
-      font-synthesis-weight:none;
       text-rendering:optimizeLegibility;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
         radial-gradient(900px 500px at 10% 10%, rgba(75,212,255,.18), transparent 60%),
         radial-gradient(900px 500px at 90% 20%, rgba(255,61,141,.16), transparent 55%),
@@ -42,9 +41,7 @@
       display:flex; gap:14px; align-items:center; justify-content:space-between;
       padding:10px 0 22px;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-    }
+    .brand{display:flex; align-items:center; gap:12px;}
     .logo{
       width:44px; height:44px; border-radius:14px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -76,7 +73,8 @@
     }
     .pad{padding:18px}
     .hero h2{margin:0 0 6px; font-size:30px; letter-spacing:.2px}
-    .hero .tag{
+
+    .tag{
       display:inline-flex; gap:8px; align-items:center;
       background: rgba(255,255,255,.06);
       padding:7px 10px; border-radius:999px;
@@ -88,18 +86,12 @@
     }
     .lead{color:var(--muted); margin:12px 0 0; font-size:14px}
 
-    .player{
-      display:flex; flex-direction:column; gap:14px;
-      height:100%;
-    }
-    .player .top{
-      display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
-    }
-    .live{
-      display:flex; flex-direction:column; gap:4px;
-    }
+    .player{display:flex; flex-direction:column; gap:14px; height:100%;}
+    .player .top{display:flex; justify-content:space-between; gap:12px; align-items:flex-start;}
+    .live{display:flex; flex-direction:column; gap:4px;}
     .live strong{font-size:14px}
     .live span{font-size:12px; color:var(--muted)}
+
     .pill{
       font-size:12px; color:var(--text);
       background: rgba(255,255,255,.06);
@@ -108,9 +100,7 @@
       white-space:nowrap;
     }
 
-    .controls{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-    }
+    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
     button{
       appearance:none; border:0; cursor:pointer;
       padding:11px 14px; border-radius:14px;
@@ -124,14 +114,28 @@
       border:0;
     }
     .primary:hover{filter:brightness(1.05)}
+
     .status{
       font-size:12px; color:var(--muted);
       padding:10px 12px; border-radius:14px;
       background: rgba(0,0,0,.18);
       border:1px solid rgba(255,255,255,.08);
-      flex:1;
-      min-width: 220px;
+      flex:1; min-width: 240px;
+      word-break: break-word;
     }
+
+    .alert{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      color: var(--muted);
+      font-size:12px;
+    }
+    .alert strong{color: var(--text)}
+    .alert.bad{border-color: rgba(239,68,68,.35)}
+    .alert.ok{border-color: rgba(35,197,94,.35)}
 
     .row{
       display:grid; grid-template-columns: 1fr 1fr; gap:18px;
@@ -141,9 +145,8 @@
 
     h3{margin:0 0 10px; font-size:16px}
     .muted{color:var(--muted); font-size:13px; margin:0 0 10px}
-    .list{
-      display:grid; gap:10px;
-    }
+
+    .list{display:grid; gap:10px;}
     .item{
       padding:12px; border-radius:14px;
       background: rgba(255,255,255,.04);
@@ -154,9 +157,7 @@
     .item b{font-weight:600}
     .item span{color:var(--muted)}
 
-    form{
-      display:grid; gap:10px;
-    }
+    form{display:grid; gap:10px;}
     input, textarea{
       width:100%;
       padding:11px 12px;
@@ -167,6 +168,7 @@
       outline:none;
     }
     textarea{min-height:110px; resize:vertical}
+
     .foot{
       margin-top:24px;
       color:var(--muted);
@@ -176,6 +178,8 @@
     }
     .tiny{font-size:12px; color:var(--muted)}
     .sep{opacity:.35}
+
+    audio{width:100%}
     .badge{
       display:inline-flex; gap:8px; align-items:center;
       padding:8px 10px; border-radius:999px;
@@ -183,7 +187,6 @@
       border:1px solid rgba(255,255,255,.08);
       font-size:12px; color:var(--muted);
     }
-    audio{width:100%}
   </style>
 </head>
 
@@ -233,19 +236,27 @@
             <div class="pill" id="connPill">Status: Ready</div>
           </div>
 
-          <!-- Stream URL -->
-          <audio id="audio" preload="none" controls crossorigin="anonymous">
+          <audio id="audio" preload="none" controls>
             <source id="source" src="http://usa20.fastcast4u.com:2000/" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
 
           <div class="controls">
-            <button class="primary" id="btnPlay">Play</button>
-            <button id="btnStop">Stop</button>
-            <button id="btnOpen">Open Stream</button>
+            <button class="primary" id="btnPlay" type="button">Play</button>
+            <button id="btnStop" type="button">Stop</button>
+            <button id="btnOpen" type="button">Open Stream</button>
             <div class="status" id="status">
-              Stream URL: <span class="tiny">http://usa20.fastcast4u.com:2000/</span>
+              Stream URL: <span class="tiny" id="urlText"></span>
             </div>
+          </div>
+
+          <div class="alert bad" id="mixedAlert" style="display:none;">
+            <strong>Notice:</strong> Your website is HTTPS, but this stream is HTTP. Some browsers may block it.
+            If Play fails, use <strong>Open Stream</strong>. Best fix is an HTTPS stream URL from your host.
+          </div>
+
+          <div class="alert ok" id="okAlert" style="display:none;">
+            <strong>Ready:</strong> Stream appears compatible with this page.
           </div>
 
           <div class="tiny" id="hint">
@@ -271,18 +282,15 @@
 
       <div class="card">
         <div class="pad">
-          <h3>Now Playing (Optional)</h3>
+          <h3>Station Info</h3>
           <p class="muted">
-            Many stream hosts provide a “Now Playing” JSON endpoint. If you have one, you can wire it in here.
+            Use this space for announcements, promotions, show highlights, and links to your Second Life events.
           </p>
           <div class="list">
-            <div class="item"><div><b>Track</b></div><span id="npTrack">Not connected</span></div>
-            <div class="item"><div><b>Artist / Show</b></div><span id="npArtist">Not connected</span></div>
-            <div class="item"><div><b>Listeners</b></div><span id="npListeners">Not connected</span></div>
+            <div class="item"><div><b>Station</b></div><span>FIRE91 Global Cross Over</span></div>
+            <div class="item"><div><b>Broadcast</b></div><span>Internet Radio</span></div>
+            <div class="item"><div><b>Submissions</b></div><span>DJ streams wanted</span></div>
           </div>
-          <p class="tiny" style="margin-top:10px;">
-            If you tell me your FastCast4U “Now Playing”/stats API URL, I can plug it in.
-          </p>
         </div>
       </div>
     </section>
@@ -291,18 +299,17 @@
       <div id="djs" class="card">
         <div class="pad">
           <h3>DJ Streams Wanted</h3>
-          <p class="muted">Submit your info. This form uses email (simple) or you can connect it to a backend later.</p>
+          <p class="muted">This submission opens your email client (no backend required).</p>
 
-          <!-- Option A: mailto (works instantly, no backend) -->
           <form id="djForm">
             <input id="djName" placeholder="DJ / Host Name" required />
             <input id="djEmail" placeholder="Email" type="email" required />
-            <input id="djTZ" placeholder="Time Zone (e.g., CST, EST, GMT)" />
+            <input id="djTZ" placeholder="Time Zone (e.g., EST, CST, GMT)" />
             <input id="djLinks" placeholder="Link(s) to mixes / socials" />
             <textarea id="djMsg" placeholder="Tell us your style, availability, and what you want to stream."></textarea>
             <button class="primary" type="submit">Send DJ Submission</button>
             <div class="tiny">
-              Note: This opens your email client. If you want a real web inbox (no email app), I can provide a free backend option.
+              Replace the receiving email in the code (search for: <b>STATION_EMAIL</b>).
             </div>
           </form>
         </div>
@@ -311,40 +318,55 @@
       <div id="contact" class="card">
         <div class="pad">
           <h3>Contact</h3>
-          <p class="muted">Add your station email, Discord, or Second Life contact details here.</p>
+          <p class="muted">Update these with your real station contact details.</p>
           <div class="list">
-            <div class="item"><div><b>Email</b></div><span>yourstation@email.com</span></div>
-            <div class="item"><div><b>Second Life</b></div><span>FIRE91 (add contact name)</span></div>
+            <div class="item"><div><b>Email</b></div><span id="stationEmailText">yourstation@email.com</span></div>
+            <div class="item"><div><b>Second Life</b></div><span>Add your avatar/contact name</span></div>
             <div class="item"><div><b>Social</b></div><span>@fire91 (add handle)</span></div>
           </div>
-          <p class="tiny" style="margin-top:10px;">
-            If you want, I can add a live chat widget or Discord embed.
-          </p>
         </div>
       </div>
     </section>
 
     <div class="foot">
       <div>© <span id="year"></span> FIRE91 Global Cross Over Radio</div>
-      <div class="tiny">Built for fast loading, mobile play, and easy updates.</div>
+      <div class="tiny">Mobile-friendly. Fast loading. Easy updates.</div>
     </div>
   </div>
 
   <script>
-    const STREAM_URL = "http://usa20.fastcast4u.com:2000/;?type=http&nocache=1768715332";
+    // STREAM SETTINGS
+    const STREAM_URL = "http://usa20.fastcast4u.com:2000/";
+    const STATION_EMAIL = "yourstation@email.com"; // <-- change this to your real email
 
     const audio = document.getElementById("audio");
     const source = document.getElementById("source");
     const status = document.getElementById("status");
     const connPill = document.getElementById("connPill");
+    const urlText = document.getElementById("urlText");
+    const mixedAlert = document.getElementById("mixedAlert");
+    const okAlert = document.getElementById("okAlert");
+    const stationEmailText = document.getElementById("stationEmailText");
 
+    urlText.textContent = STREAM_URL;
+    stationEmailText.textContent = STATION_EMAIL;
+
+    // Load stream
     source.src = STREAM_URL;
     audio.load();
 
-    const setPill = (text, tone="ready") => {
-      connPill.textContent = "Status: " + text;
-      // simple tone indicator via emoji-free text only; styling omitted intentionally
-    };
+    function setPill(text){ connPill.textContent = "Status: " + text; }
+
+    // Warn if HTTPS page + HTTP stream (mixed content can be blocked)
+    (function mixedContentCheck(){
+      const pageIsHttps = window.location.protocol === "https:";
+      const streamIsHttp = STREAM_URL.startsWith("http:");
+      if (pageIsHttps && streamIsHttp) {
+        mixedAlert.style.display = "block";
+      } else {
+        okAlert.style.display = "block";
+      }
+    })();
 
     document.getElementById("btnPlay").addEventListener("click", async () => {
       try{
@@ -353,8 +375,8 @@
         setPill("Playing");
         status.textContent = "Playing: " + STREAM_URL;
       }catch(e){
-        setPill("Tap required");
-        status.textContent = "Playback blocked by the browser. Use “Open Stream” or tap Play again.";
+        setPill("Tap required / Blocked");
+        status.textContent = "Playback blocked by the browser. Click “Open Stream” or try again.";
       }
     });
 
@@ -366,7 +388,7 @@
     });
 
     document.getElementById("btnOpen").addEventListener("click", () => {
-      window.open(STREAM_URL, "_blank");
+      window.open(STREAM_URL, "_blank", "noopener,noreferrer");
     });
 
     audio.addEventListener("playing", () => setPill("Playing"));
@@ -376,9 +398,10 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // DJ submission uses mailto (no backend required)
+    // DJ submission via mailto
     document.getElementById("djForm").addEventListener("submit", (e) => {
       e.preventDefault();
+
       const name = document.getElementById("djName").value.trim();
       const email = document.getElementById("djEmail").value.trim();
       const tz = document.getElementById("djTZ").value.trim();
@@ -394,9 +417,7 @@
         "Message:\n" + msg + "\n"
       );
 
-      // Replace with your real receiving email
-      const to = "yourstation@email.com";
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      window.location.href = "mailto:" + encodeURIComponent(STATION_EMAIL) + "?subject=" + subject + "&body=" + body;
     });
   </script>
 </body>
