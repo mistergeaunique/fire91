@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FIRE91 Global Cross Over Radio</title>
+  <meta name="description" content="FIRE91 Global Cross Over Radio Station — Live DJ streams wanted." />
+
+  <style>
+    :root{
+      --bg:#0b0f18;
+      --card:#121a2a;
+      --muted:#9fb0cc;
+      --text:#e8eefc;
+      --accent:#ff3d8d;
+      --accent2:#4bd4ff;
+      --ok:#23c55e;
+      --warn:#fbbf24;
+      --shadow: 0 12px 35px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+      font-synthesis-weight:none;
+      text-rendering:optimizeLegibility;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(75,212,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(255,61,141,.16), transparent 55%),
+        radial-gradient(700px 500px at 40% 90%, rgba(123,92,255,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px}
+    header{
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      padding:10px 0 22px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+    }
+    .brand h1{font-size:18px; margin:0}
+    .brand p{margin:0; font-size:12px; color:var(--muted)}
+    nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{
+      text-decoration:none; font-size:13px; color:var(--muted);
+      padding:8px 10px; border-radius:12px;
+      background: rgba(255,255,255,.04);
+    }
+    nav a:hover{color:var(--text); background: rgba(255,255,255,.07)}
+
+    .hero{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
+      align-items:stretch;
+      margin-top:8px;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background: rgba(18,26,42,.86);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .pad{padding:18px}
+    .hero h2{margin:0 0 6px; font-size:30px; letter-spacing:.2px}
+    .hero .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      background: rgba(255,255,255,.06);
+      padding:7px 10px; border-radius:999px;
+      color:var(--muted); font-size:12px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;background:var(--ok);
+      box-shadow:0 0 0 4px rgba(35,197,94,.15);
+    }
+    .lead{color:var(--muted); margin:12px 0 0; font-size:14px}
+
+    .player{
+      display:flex; flex-direction:column; gap:14px;
+      height:100%;
+    }
+    .player .top{
+      display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
+    }
+    .live{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .live strong{font-size:14px}
+    .live span{font-size:12px; color:var(--muted)}
+    .pill{
+      font-size:12px; color:var(--text);
+      background: rgba(255,255,255,.06);
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      white-space:nowrap;
+    }
+
+    .controls{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    }
+    button{
+      appearance:none; border:0; cursor:pointer;
+      padding:11px 14px; border-radius:14px;
+      color:var(--text);
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    button:hover{background: rgba(255,255,255,.11)}
+    .primary{
+      background: linear-gradient(135deg, rgba(255,61,141,.95), rgba(75,212,255,.85));
+      border:0;
+    }
+    .primary:hover{filter:brightness(1.05)}
+    .status{
+      font-size:12px; color:var(--muted);
+      padding:10px 12px; border-radius:14px;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.08);
+      flex:1;
+      min-width: 220px;
+    }
+
+    .row{
+      display:grid; grid-template-columns: 1fr 1fr; gap:18px;
+      margin-top:18px;
+    }
+    @media (max-width: 900px){ .row{grid-template-columns:1fr} }
+
+    h3{margin:0 0 10px; font-size:16px}
+    .muted{color:var(--muted); font-size:13px; margin:0 0 10px}
+    .list{
+      display:grid; gap:10px;
+    }
+    .item{
+      padding:12px; border-radius:14px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      display:flex; justify-content:space-between; gap:10px;
+      font-size:13px;
+    }
+    .item b{font-weight:600}
+    .item span{color:var(--muted)}
+
+    form{
+      display:grid; gap:10px;
+    }
+    input, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .foot{
+      margin-top:24px;
+      color:var(--muted);
+      font-size:12px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;
+      opacity:.95;
+    }
+    .tiny{font-size:12px; color:var(--muted)}
+    .sep{opacity:.35}
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:12px; color:var(--muted);
+    }
+    audio{width:100%}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>FIRE91 Global Cross Over Radio</h1>
+          <p>Internet Radio • Live DJs • Global Vibes</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#listen">Listen</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#djs">DJ Submissions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <div class="pad">
+          <span class="tag"><span class="dot"></span> Live Stream</span>
+          <h2>Turn it up. Global crossover energy, 24/7.</h2>
+          <p class="lead">
+            Welcome to FIRE91 — where DJs, clubs, and listeners link up worldwide. Want to stream your DJ set on the station?
+            Submit below.
+          </p>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <span class="badge">Genres: Open Format / Crossover</span>
+            <span class="badge">DJ Streams Wanted</span>
+            <span class="badge">Worldwide</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="listen" class="card">
+        <div class="pad player">
+          <div class="top">
+            <div class="live">
+              <strong>Listen Now</strong>
+              <span>Press Play. If your device blocks it, use “Open Stream”.</span>
+            </div>
+            <div class="pill" id="connPill">Status: Ready</div>
+          </div>
+
+          <!-- Stream URL -->
+          <audio id="audio" preload="none" controls crossorigin="anonymous">
+            <source id="source" src="https://usa20.fastcast4u.com:1990/fire91/1/web" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+
+          <div class="controls">
+            <button class="primary" id="btnPlay">Play</button>
+            <button id="btnStop">Stop</button>
+            <button id="btnOpen">Open Stream</button>
+            <div class="status" id="status">
+              Stream URL: <span class="tiny">https://usa20.fastcast4u.com:1990/fire91/1/web</span>
+            </div>
+          </div>
+
+          <div class="tiny" id="hint">
+            Tip: Autoplay is often blocked on mobile. Tap Play once to start.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <div id="schedule" class="card">
+        <div class="pad">
+          <h3>Schedule (Example)</h3>
+          <p class="muted">Replace these slots with your real schedule.</p>
+          <div class="list">
+            <div class="item"><div><b>Mon–Thu</b> <span class="sep">•</span> 6pm–10pm</div><span>Drive Time Mix</span></div>
+            <div class="item"><div><b>Fri</b> <span class="sep">•</span> 8pm–12am</div><span>Club Night Live</span></div>
+            <div class="item"><div><b>Sat</b> <span class="sep">•</span> 2pm–6pm</div><span>Global Guest DJs</span></div>
+            <div class="item"><div><b>Sun</b> <span class="sep">•</span> 7pm–10pm</div><span>Slow Jams / Chill</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="pad">
+          <h3>Now Playing (Optional)</h3>
+          <p class="muted">
+            Many stream hosts provide a “Now Playing” JSON endpoint. If you have one, you can wire it in here.
+          </p>
+          <div class="list">
+            <div class="item"><div><b>Track</b></div><span id="npTrack">Not connected</span></div>
+            <div class="item"><div><b>Artist / Show</b></div><span id="npArtist">Not connected</span></div>
+            <div class="item"><div><b>Listeners</b></div><span id="npListeners">Not connected</span></div>
+          </div>
+          <p class="tiny" style="margin-top:10px;">
+            If you tell me your FastCast4U “Now Playing”/stats API URL, I can plug it in.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <div id="djs" class="card">
+        <div class="pad">
+          <h3>DJ Streams Wanted</h3>
+          <p class="muted">Submit your info. This form uses email (simple) or you can connect it to a backend later.</p>
+
+          <!-- Option A: mailto (works instantly, no backend) -->
+          <form id="djForm">
+            <input id="djName" placeholder="DJ / Host Name" required />
+            <input id="djEmail" placeholder="Email" type="email" required />
+            <input id="djTZ" placeholder="Time Zone (e.g., CST, EST, GMT)" />
+            <input id="djLinks" placeholder="Link(s) to mixes / socials" />
+            <textarea id="djMsg" placeholder="Tell us your style, availability, and what you want to stream."></textarea>
+            <button class="primary" type="submit">Send DJ Submission</button>
+            <div class="tiny">
+              Note: This opens your email client. If you want a real web inbox (no email app), I can provide a free backend option.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="contact" class="card">
+        <div class="pad">
+          <h3>Contact</h3>
+          <p class="muted">Add your station email, Discord, or Second Life contact details here.</p>
+          <div class="list">
+            <div class="item"><div><b>Email</b></div><span>yourstation@email.com</span></div>
+            <div class="item"><div><b>Second Life</b></div><span>FIRE91 (add contact name)</span></div>
+            <div class="item"><div><b>Social</b></div><span>@fire91 (add handle)</span></div>
+          </div>
+          <p class="tiny" style="margin-top:10px;">
+            If you want, I can add a live chat widget or Discord embed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div>© <span id="year"></span> FIRE91 Global Cross Over Radio</div>
+      <div class="tiny">Built for fast loading, mobile play, and easy updates.</div>
+    </div>
+  </div>
+
+  <script>
+    const STREAM_URL = "https://usa20.fastcast4u.com:1990/fire91/1/web";
+
+    const audio = document.getElementById("audio");
+    const source = document.getElementById("source");
+    const status = document.getElementById("status");
+    const connPill = document.getElementById("connPill");
+
+    source.src = STREAM_URL;
+    audio.load();
+
+    const setPill = (text, tone="ready") => {
+      connPill.textContent = "Status: " + text;
+      // simple tone indicator via emoji-free text only; styling omitted intentionally
+    };
+
+    document.getElementById("btnPlay").addEventListener("click", async () => {
+      try{
+        setPill("Connecting");
+        await audio.play();
+        setPill("Playing");
+        status.textContent = "Playing: " + STREAM_URL;
+      }catch(e){
+        setPill("Tap required");
+        status.textContent = "Playback blocked by the browser. Use “Open Stream” or tap Play again.";
+      }
+    });
+
+    document.getElementById("btnStop").addEventListener("click", () => {
+      audio.pause();
+      audio.currentTime = 0;
+      setPill("Stopped");
+      status.textContent = "Stopped.";
+    });
+
+    document.getElementById("btnOpen").addEventListener("click", () => {
+      window.open(STREAM_URL, "_blank");
+    });
+
+    audio.addEventListener("playing", () => setPill("Playing"));
+    audio.addEventListener("pause", () => setPill("Paused"));
+    audio.addEventListener("waiting", () => setPill("Buffering"));
+    audio.addEventListener("error", () => setPill("Error"));
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // DJ submission uses mailto (no backend required)
+    document.getElementById("djForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("djName").value.trim();
+      const email = document.getElementById("djEmail").value.trim();
+      const tz = document.getElementById("djTZ").value.trim();
+      const links = document.getElementById("djLinks").value.trim();
+      const msg = document.getElementById("djMsg").value.trim();
+
+      const subject = encodeURIComponent("FIRE91 DJ Submission — " + name);
+      const body = encodeURIComponent(
+        "DJ/Host Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Time Zone: " + tz + "\n" +
+        "Links: " + links + "\n\n" +
+        "Message:\n" + msg + "\n"
+      );
+
+      // Replace with your real receiving email
+      const to = "yourstation@email.com";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
