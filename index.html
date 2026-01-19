@@ -122,6 +122,28 @@
       flex-wrap:wrap;
       gap:10px;
     }
+    /* FIRE91.8 logo glow animation */
+@keyframes fireGlow {
+  0% {
+    box-shadow:
+      0 0 0 rgba(255, 61, 141, 0),
+      0 0 0 rgba(75, 212, 255, 0);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(255, 61, 141, 0.45),
+      0 0 28px rgba(75, 212, 255, 0.35);
+  }
+  100% {
+    box-shadow:
+      0 0 0 rgba(255, 61, 141, 0),
+      0 0 0 rgba(75, 212, 255, 0);
+  }
+}
+
+.fire-logo {
+  animation: fireGlow 4s ease-in-out infinite;
+}
   </style>
 </head>
 
