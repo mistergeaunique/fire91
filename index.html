@@ -6,135 +6,234 @@
   <title>FIRE91.8 Global Cross Over Radio</title>
   <meta name="description" content="FIRE91.8 Global Cross Over Radio – Live DJs, global crossover sound.">
 
-  <!-- Favicon (matches your current filename) -->
+  <!-- Favicon (matches your current logo filename in the repo) -->
   <link rel="icon" type="image/png" href="fire91-8-logo.png.png">
 
   <style>
     :root{
-      --bg:#0b0f18;
-      --card:#121a2a;
-      --text:#e8eefc;
-      --muted:#9fb0cc;
-      --accent:#ff3d8d;
-      --accent2:#4bd4ff;
-      --shadow:0 12px 35px rgba(0,0,0,.35);
-      --radius:18px;
-      --max:1100px;
+      --bg0:#070A12;
+      --bg1:#0B1020;
+      --panel: rgba(18, 26, 42, .78);
+      --stroke: rgba(255,255,255,.10);
+      --text:#EAF1FF;
+      --muted:#A8B6D6;
+      --hot:#FF2D8B;
+      --cool:#39D6FF;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 20px;
+      --max: 1100px;
     }
 
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      background:
-        radial-gradient(900px 500px at 10% 10%, rgba(75,212,255,.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(255,61,141,.16), transparent 55%),
-        var(--bg);
       color:var(--text);
-      line-height:1.45;
+      background:
+        radial-gradient(1000px 550px at 12% 12%, rgba(57,214,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 90% 18%, rgba(255,45,139,.16), transparent 58%),
+        radial-gradient(700px 520px at 50% 95%, rgba(61,255,157,.06), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    /* Subtle studio grid texture */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity:.35;
+      pointer-events:none;
+      mix-blend-mode: overlay;
     }
 
-    .wrap{max-width:var(--max); margin:auto; padding:28px 18px 60px}
+    .wrap{max-width:var(--max); margin:auto; padding:26px 16px 64px}
 
     header{
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      margin-bottom:24px;
+      justify-content:space-between;
       gap:14px;
+      padding:16px 18px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,45,139,.10), rgba(57,214,255,.10));
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
       flex-wrap:wrap;
     }
 
-    .brand{display:flex; gap:12px; align-items:center}
-    .brand h1{margin:0; font-size:18px}
-    .brand p{margin:0; font-size:12px; color:var(--muted)}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width: 260px;
+    }
+    .meta{display:flex; flex-direction:column; gap:2px}
+    .meta h1{margin:0; font-size:18px; letter-spacing:.2px}
+    .meta p{margin:0; font-size:12px; color:var(--muted)}
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      width: fit-content;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: var(--hot);
+      box-shadow: 0 0 14px rgba(255,45,139,.75);
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%{transform:scale(.95); opacity:.85}
+      50%{transform:scale(1.15); opacity:1}
+      100%{transform:scale(.95); opacity:.85}
+    }
 
     nav{display:flex; gap:10px; flex-wrap:wrap}
     nav a{
       padding:8px 12px;
-      border-radius:12px;
+      border-radius: 999px;
       text-decoration:none;
       font-size:13px;
       color:var(--muted);
-      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
     }
-    nav a:hover{color:var(--text)}
+    nav a:hover{color:var(--text); border-color: rgba(255,255,255,.18)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      margin-top:18px;
+    }
+    @media(max-width:920px){ .grid{grid-template-columns:1fr} }
 
     .card{
-      background:rgba(18,26,42,.9);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
     }
     .pad{padding:18px}
 
-    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:18px;}
-    @media(max-width:900px){.hero{grid-template-columns:1fr}}
+    .heroTitle{
+      font-size:34px;
+      margin:0 0 10px;
+      letter-spacing:.2px;
+    }
+    .lead{margin:0; color:var(--muted); font-size:14px; line-height:1.6}
 
-    h2{margin:0 0 10px; font-size:30px}
-    .lead{color:var(--muted); font-size:14px; margin:0}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .pill b{color:var(--text); font-weight:600}
 
-    .player{display:flex; flex-direction:column; gap:14px}
-    audio{width:100%}
+    .playerHead{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .playerHead strong{font-size:14px; letter-spacing:.3px}
 
-    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
+    audio{width:100%; margin:6px 0 12px}
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
     button{
       padding:11px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.08);
-      color:var(--text);
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
       cursor:pointer;
     }
-    button:hover{background:rgba(255,255,255,.12)}
+    button:hover{border-color: rgba(255,255,255,.22)}
     .primary{
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
       border:0;
+      background: linear-gradient(135deg, var(--hot), var(--cool));
+      box-shadow: 0 14px 40px rgba(255,45,139,.18);
     }
 
     .status{
       width:100%;
-      font-size:12px;
-      color:var(--muted);
       padding:10px 12px;
       border-radius:14px;
-      background:rgba(0,0,0,.2);
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      color: var(--muted);
+      font-size:12px;
       word-break:break-word;
     }
 
-    .row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
-    @media(max-width:900px){.row{grid-template-columns:1fr}}
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+    @media(max-width:920px){ .row{grid-template-columns:1fr} }
 
     h3{margin:0 0 10px; font-size:16px}
-    .muted{color:var(--muted); font-size:13px; margin:0 0 10px}
-
     .list{display:grid; gap:10px}
     .item{
       padding:12px;
       border-radius:14px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.16);
+      border:1px solid rgba(255,255,255,.10);
       font-size:13px;
       display:flex;
       justify-content:space-between;
       gap:10px;
+      color: var(--muted);
     }
+    .item b{color:var(--text)}
 
     form{display:grid; gap:10px}
     input,textarea{
       padding:11px 12px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(0,0,0,.25);
-      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
       outline:none;
     }
     textarea{min-height:110px}
 
     .foot{
-      margin-top:26px;
-      font-size:12px;
+      margin-top:22px;
+      padding:14px 16px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
       color:var(--muted);
       display:flex;
       justify-content:space-between;
@@ -144,21 +243,9 @@
 
     /* FIRE91.8 logo glow animation */
     @keyframes fireGlow {
-      0% {
-        box-shadow:
-          0 0 0 rgba(255, 61, 141, 0),
-          0 0 0 rgba(75, 212, 255, 0);
-      }
-      50% {
-        box-shadow:
-          0 0 18px rgba(255, 61, 141, 0.45),
-          0 0 28px rgba(75, 212, 255, 0.35);
-      }
-      100% {
-        box-shadow:
-          0 0 0 rgba(255, 61, 141, 0),
-          0 0 0 rgba(75, 212, 255, 0);
-      }
+      0% { box-shadow: 0 0 0 rgba(255, 61, 141, 0), 0 0 0 rgba(75, 212, 255, 0); }
+      50% { box-shadow: 0 0 18px rgba(255, 61, 141, 0.45), 0 0 28px rgba(75, 212, 255, 0.35); }
+      100% { box-shadow: 0 0 0 rgba(255, 61, 141, 0), 0 0 0 rgba(75, 212, 255, 0); }
     }
     .fire-logo { animation: fireGlow 4s ease-in-out infinite; }
   </style>
@@ -173,14 +260,10 @@
           src="fire91-8-logo.png.png"
           alt="FIRE91.8 Global Cross Over Radio"
           class="fire-logo"
-          style="
-            height:64px;
-            width:auto;
-            border-radius:14px;
-            box-shadow:0 12px 35px rgba(0,0,0,.35);
-          "
+          style="height:60px;width:auto;border-radius:14px;"
         >
-        <div>
+        <div class="meta">
+          <div class="badge"><span class="dot"></span><span>ON AIR</span></div>
           <h1>FIRE91.8 Global Cross Over Radio</h1>
           <p>Internet Radio • Live DJs • Global Vibes</p>
         </div>
@@ -193,19 +276,29 @@
       </nav>
     </header>
 
-    <section class="hero">
+    <section class="grid">
       <div class="card">
         <div class="pad">
-          <h2>Global crossover energy, 24/7</h2>
+          <h2 class="heroTitle">Broadcasting worldwide — 24/7</h2>
           <p class="lead">
-            FIRE91.8 connects DJs and listeners worldwide. Live shows, guest mixes, and open-format crossover sound.
+            FIRE91.8 connects DJs and listeners around the globe with crossover sound, live shows, and guest mixes.
+            Tap play and you’re locked in.
           </p>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="pill"><b>Station</b> FIRE91.8</div>
+            <div class="pill"><b>Status</b> Live</div>
+            <div class="pill"><b>Genre</b> Global Crossover</div>
+          </div>
         </div>
       </div>
 
       <div id="listen" class="card">
-        <div class="pad player">
-          <strong>Listen Live</strong>
+        <div class="pad">
+          <div class="playerHead">
+            <strong>Listen Live</strong>
+            <div class="pill"><b>HQ</b> Secure Stream</div>
+          </div>
 
           <audio id="audio" preload="none" controls>
             <source id="srcMp3" src="" type="audio/mpeg">
@@ -219,13 +312,12 @@
             <button id="openBtn" type="button">Open Stream</button>
           </div>
 
-          <div class="status" id="status">Ready.</div>
+          <div class="status" id="status" style="margin-top:10px;">Ready.</div>
 
-          <!-- NOW PLAYING / LISTENERS -->
-          <div class="status" id="nowPlaying">Now Playing: Loading…</div>
-          <div class="status" id="listenerCount">Listeners: Loading…</div>
+          <div class="status" id="nowPlaying" style="margin-top:10px;">Now Playing: Loading…</div>
+          <div class="status" id="listenerCount" style="margin-top:10px;">Listeners: Loading…</div>
 
-          <div class="muted" style="margin:0;">
+          <div class="lead" style="margin-top:10px;">
             If Play fails on mobile, tap Play again or use Open Stream.
           </div>
         </div>
@@ -248,14 +340,30 @@
       <div id="djs" class="card">
         <div class="pad">
           <h3>DJ Streams Wanted</h3>
-          <p class="muted">Submissions open worldwide.</p>
-          <form id="djForm">
-            <input id="djName" placeholder="DJ / Host Name" required>
-            <input id="djEmail" type="email" placeholder="Email" required>
-            <input id="djTZ" placeholder="Time Zone (EST, CST, GMT, etc.)">
-            <textarea id="djMsg" placeholder="Tell us about your style and availability"></textarea>
+          <p class="lead" style="margin:0 0 10px;">
+            Submit your info and we’ll reach out. (Form sends to: <b>mistergeacv@gmail.com</b>)
+          </p>
+
+          <!-- IMPORTANT:
+               When you get your Formspree URL, paste it into action="" below.
+               Example: action="https://formspree.io/f/abcdwxyz"
+          -->
+          <form id="djForm" action="PASTE_FORMSPREE_URL_HERE" method="POST">
+            <input name="dj_name" id="djName" placeholder="DJ / Host Name" required>
+            <input name="email" id="djEmail" type="email" placeholder="Email" required>
+            <input name="time_zone" id="djTZ" placeholder="Time Zone (EST, CST, GMT, etc.)">
+            <textarea name="message" id="djMsg" placeholder="Tell us about your style and availability"></textarea>
+
+            <input type="hidden" name="_subject" value="FIRE91.8 DJ Submission">
+            <input type="hidden" name="_format" value="plain">
+
             <button class="primary" type="submit">Send Submission</button>
+            <div class="lead" id="djStatus" style="margin:8px 0 0;"></div>
           </form>
+
+          <div class="lead" style="margin-top:10px;">
+            If the form is not connected yet, it will open an email draft automatically.
+          </div>
         </div>
       </div>
     </section>
@@ -268,7 +376,9 @@
   </div>
 
   <script>
-    // STREAM (your confirmed working pattern)
+    // =========================
+    // STREAM (your working URL)
+    // =========================
     const STREAM_PREFIX = "https://usa20.fastcast4u.com:2000/;?type=http&nocache=";
 
     const audio  = document.getElementById("audio");
@@ -279,11 +389,7 @@
     function streamUrl() {
       return STREAM_PREFIX + Date.now();
     }
-
-    function setStatus(msg) {
-      status.textContent = msg;
-    }
-
+    function setStatus(msg) { status.textContent = msg; }
     function loadStream(url) {
       srcMp3.src = url;
       srcAac.src = url;
@@ -327,32 +433,10 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // DJ submission via mailto (no backend)
-    document.getElementById("djForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById("djName").value.trim();
-      const email = document.getElementById("djEmail").value.trim();
-      const tz = document.getElementById("djTZ").value.trim();
-      const msg = document.getElementById("djMsg").value.trim();
-
-      const subject = encodeURIComponent("FIRE91.8 DJ Submission — " + name);
-      const body = encodeURIComponent(
-        "DJ/Host Name: " + name + "\n" +
-        "Email: " + email + "\n" +
-        "Time Zone: " + tz + "\n\n" +
-        "Message:\n" + msg + "\n"
-      );
-
-      // Replace this with your real station email
-      const to = "mistergeacv@gmail.com";
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    });
-
-    // NOW PLAYING + LISTENERS (JSONP)
-    // If your stats endpoint differs, tell me what FastCast4U provides and I’ll adjust.
+    // =========================
+    // NOW PLAYING + LISTENERS
+    // =========================
     const STATS_URL_BASE = "https://usa20.fastcast4u.com:2000/stats?sid=1&json=1&callback=";
-
     const nowPlayingEl = document.getElementById("nowPlaying");
     const listenerEl = document.getElementById("listenerCount");
 
@@ -388,6 +472,63 @@
 
     loadStatsJSONP();
     setInterval(loadStatsJSONP, 15000);
+
+    // =========================
+    // DJ FORM (Formspree when ready, mailto fallback)
+    // =========================
+    const djForm = document.getElementById("djForm");
+    const djStatus = document.getElementById("djStatus");
+    const STATION_EMAIL = "mistergeacv@gmail.com";
+
+    function openMailtoFallback() {
+      const name = document.getElementById("djName").value.trim();
+      const email = document.getElementById("djEmail").value.trim();
+      const tz = document.getElementById("djTZ").value.trim();
+      const msg = document.getElementById("djMsg").value.trim();
+
+      const subject = encodeURIComponent("FIRE91.8 DJ Submission — " + (name || "New DJ"));
+      const body = encodeURIComponent(
+        "DJ/Host Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Time Zone: " + tz + "\n\n" +
+        "Message:\n" + msg + "\n"
+      );
+
+      window.location.href = "mailto:" + STATION_EMAIL + "?subject=" + subject + "&body=" + body;
+    }
+
+    djForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // If you have not pasted your Formspree URL yet, use email draft fallback.
+      if (!djForm.action || djForm.action.includes("PASTE_FORMSPREE_URL_HERE")) {
+        djStatus.textContent = "Form not connected yet — opening email draft…";
+        openMailtoFallback();
+        return;
+      }
+
+      djStatus.textContent = "Sending…";
+
+      try {
+        const formData = new FormData(djForm);
+        const resp = await fetch(djForm.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (resp.ok) {
+          djStatus.textContent = "Submitted. Thank you — we’ll reach out soon.";
+          djForm.reset();
+        } else {
+          djStatus.textContent = "Could not send right now. Opening email draft…";
+          openMailtoFallback();
+        }
+      } catch (err) {
+        djStatus.textContent = "Network error. Opening email draft…";
+        openMailtoFallback();
+      }
+    });
   </script>
 </body>
 </html>
