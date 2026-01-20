@@ -1,0 +1,8 @@
+{
+  "shows": [
+    { "day": "Mon–Thu", "start": "6PM", "end": "10PM", "name": "Drive Time Mix", "dj": "" },
+    { "day": "Friday",  "start": "9PM", "end": "1AM",  "name": "Club Night Live", "dj": "" },
+    { "day": "Saturday","start": "8PM", "end": "1AM",  "name": "Guest DJs", "dj": "" },
+    { "day": "Sunday",  "start": "7PM", "end": "11PM", "name": "Chill & Slow Jams", "dj": "" }
+  ]
+}
