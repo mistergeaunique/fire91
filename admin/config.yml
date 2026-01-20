@@ -1,0 +1,78 @@
+backend:
+  name: github
+  repo: mistergeaunique/fire91
+  branch: main
+  base_url: https://YOUR-VERCEL-OAUTH-APP.vercel.app
+  auth_endpoint: auth
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home"
+        name: "home"
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Text", name: "hero_text", widget: "text" }
+          - label: "Badges"
+            name: "badges"
+            widget: "list"
+            field: { label: "Badge", name: "badge", widget: "string" }
+
+      - label: "About"
+        name: "about"
+        file: "content/about.json"
+        format: "json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "events"
+    label: "Upcoming Events"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Time Zone", name: "timezone", widget: "string", required: false }
+      - { label: "DJ/Host", name: "dj", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  - name: "schedule"
+    label: "Schedule"
+    files:
+      - label: "Weekly Schedule"
+        name: "weekly"
+        file: "content/schedule.json"
+        format: "json"
+        fields:
+          - label: "Shows"
+            name: "shows"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string" }
+              - { label: "Start Time", name: "start", widget: "string" }
+              - { label: "End Time", name: "end", widget: "string", required: false }
+              - { label: "Show Name", name: "name", widget: "string" }
+              - { label: "DJ", name: "dj", widget: "string", required: false }
+
+  - name: "djs"
+    label: "DJs"
+    folder: "content/djs"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "DJ Name", name: "name", widget: "string" }
+      - { label: "Genres", name: "genres", widget: "string", required: false }
+      - { label: "Bio", name: "bio", widget: "text", required: false }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
